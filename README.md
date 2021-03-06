@@ -22,7 +22,7 @@ p.s. записать гиф файл работы приложения не м�
 
 ![Image alt](https://github.com/mrprogre/plsql_log_monitor/blob/master/GUI.png) 
 
-I made the application for myself, tk. I didn’t like to constantly switch the tab in PLSQL developer to see the log, and also so that new records were added as a cumulative total, and not overwritten with the current data of the interval in the select. It is very convenient to develop new functionality and catch every 2 seconds the values ​​of variables or errors that are written to the log table (especially convenient when you use two monitors). You can also open the application 3 times to simultaneously monitor all development environments.
+I made the application for myself, because I didn’t like to constantly switch the tab in PLSQL developer to see the log, and also so that new records were added as a cumulative total, and not overwritten with the current data of the interval in the select. It is very convenient to develop new functionality and catch every 2 seconds the values of variables or errors that are written to the log table (especially convenient when you use two monitors). You can also open the application 3 times to simultaneously monitor all development environments.
 
 In the process of work, I added a lot of new functionality:
 1) connection to 3 development environments: dev, test, prod (fast switching between environments using the "Connect" button)
