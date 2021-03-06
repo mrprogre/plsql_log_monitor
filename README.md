@@ -10,7 +10,7 @@
 3) добавлены кнопки: экспорт таблицы в эксель, остановить поиск, очистить список
 4) добавлено контекстное меню при нажатии правой кнопкой мыши: копировать, удалить выделенные строки
 5) добавлен tooltip на текст сообщения, т.к. перенос по строкам визуально мне не нравится
-6) добавлен комбобокс со списком всех таблиц текущего пользователя в текущей среде разработки (столбцы, их тип, уникальные значения в столбцах на данный момент(считается при нажатии на кнопку "Go" в Java, а не берётся из статистики Oracle))
+6) добавлен комбобокс со списком всех таблиц текущего пользователя (user_source) в текущей среде разработки (столбцы, их тип, уникальные значения в столбцах на данный момент(считается при нажатии на кнопку "Go" в Java, а не берётся из статистики Oracle))
 7) добавлена возможность добавления/удаления таблицы из списка избранных таблиц (значок звёздочки превращается в зелёную галочку для этой таблицы), список которых отображается при нажатии галочки "Favorite tables".
 8) общий список избранных таблиц можно посмотреть при нажатии на чёрный квадрат (для каждой среды свои избранные таблицы)
 9) ведётся лог работы программы. Посмотреть его можно нажатием на коричневый квадрат.
@@ -30,7 +30,7 @@ In the process of work, I added a lot of new functionality:
 3) added buttons: export table to Excel, stop search, clear list
 4) added context menu when right-clicking: copy, delete selected lines
 5) added tooltip to the message text, because I don't like line wrapping visually
-6) added combobox with a list of all tables of the current user in the current development environment (columns, their type, unique values ​​in columns at the moment (calculated when you click on the "Go" button in Java, and not taken from Oracle statistics))
+6) added combobox with a list of all tables of the current user in the current development environment (columns, their type, unique values in columns at the moment (calculated when you click on the "Go" button in Java, and not taken from Oracle statistics))
 7) added the ability to add / remove a table from the list of favorite tables (the star icon turns into a green checkmark for this table), the list of which is displayed when you click the "Favorite tables" checkbox.
 8) a general list of selected tables can be viewed by clicking on the black square (each environment has its own selected tables)
 9) a log of the program is kept. You can view it by clicking on the brown square.
