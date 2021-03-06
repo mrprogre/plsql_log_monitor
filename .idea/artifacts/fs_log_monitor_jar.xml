@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="fs_log_monitor:jar">
+    <output-path>$USER_HOME$/Desktop</output-path>
+    <root id="archive" name="fs_log_monitor.jar">
+      <element id="module-output" name="fs_log_monitor" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/lib/ojdbc8.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/lib/orai18n.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/lib/tika-core-1.14.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/lib/jxl-2.6.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
