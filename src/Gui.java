@@ -83,7 +83,7 @@ public class Gui extends JFrame implements ActionListener {
             @Override
             public void windowClosing(WindowEvent e) {
                 Main.LOGGER.log(Level.INFO, "Приложение закрыто");
-                if (Main.isConnectedToVPN) Main.close();
+                if (Oracle.isConnectedToVPN) Oracle.close();
             }
         });
 
@@ -259,19 +259,19 @@ public class Gui extends JFrame implements ActionListener {
         this.getContentPane().add(selectBtn);
         //Listener
         selectBtn.addActionListener((e) -> {
-            Main.isStop.set(false);
+            Oracle.isStop.set(false);
             sumLbl.setText("--------  0");
             statusLbl.setText("");
             if (model.getColumnCount() > 0) model.setRowCount(0);
-            if (!isSelect && !Main.isStop.get()) {
-                (new Thread(Main::select)).start();
+            if (!isSelect && !Oracle.isStop.get()) {
+                (new Thread(Oracle::select)).start();
             }
             if (!isRun) {
                 (new Thread(() -> {
-                    while (isSelect && !Main.isStop.get()) {
-                        Main.isStop.set(false);
-                        Main.select();
-                        if (isSelect && !Main.isStop.get()) {
+                    while (isSelect && !Oracle.isStop.get()) {
+                        Oracle.isStop.set(false);
+                        Oracle.select();
+                        if (isSelect && !Oracle.isStop.get()) {
                             statusLbl.setText("");
                         }
                     }
@@ -292,8 +292,8 @@ public class Gui extends JFrame implements ActionListener {
         //Listener
         stopBtn.addActionListener((e) -> {
             try {
-                Main.isStop.set(true);
-                Main.isSearchFinished.set(true);
+                Oracle.isStop.set(true);
+                Oracle.isSearchFinished.set(true);
                 Common.notification("stopped");
                 isRun = false;
             } catch (Exception var2) {
@@ -350,13 +350,13 @@ public class Gui extends JFrame implements ActionListener {
         //Listener
         connectionBtn.addActionListener((e) -> {
             try {
-                if (Main.isConnectedToVPN) {
-                    Main.isConnectedToVPN = false;
-                    if (Main.user_tables.size() > 0) Main.user_tables.clear();
+                if (Oracle.isConnectedToVPN) {
+                    Oracle.isConnectedToVPN = false;
+                    if (Oracle.user_tables.size() > 0) Oracle.user_tables.clear();
                     if (tableNamesBox.getItemCount() > 0) tableNamesBox.removeAllItems();
-                    Main.close();
+                    Oracle.close();
                 }
-                new Thread(Main::open).start();
+                new Thread(Oracle::open).start();
                 favouriteTabCheckBox.setState(false);
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -694,13 +694,13 @@ public class Gui extends JFrame implements ActionListener {
         // Результат селекта выбранной таблицы
         selectFromTableBtn.addActionListener(e -> {
             if (tableNamesBox.getItemCount() != 0) {
-                Main.tableInfo();
+                Oracle.tableInfo();
                 //Main.headers.add("ROWID");
                 lblWhere.setText("SELECT * FROM " + tableNamesBox.getSelectedItem());
                 executeModel = new DefaultTableModel(new Object[][]{
-                }, Main.headers.toArray()) {
+                }, Oracle.headers.toArray()) {
                     // Сортировка в любой таблице по любому типу столбца
-                    final Class[] types = Common.typeClass(Main.types);
+                    final Class[] types = Common.typeClass(Oracle.types);
 
                     @Override
                     public Class getColumnClass(int columnIndex) {
@@ -723,8 +723,8 @@ public class Gui extends JFrame implements ActionListener {
                 executeTable.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
                 executeTable.setFont(new Font("SansSerif", Font.PLAIN, 13));
                 // ширина всех столбцов
-                for (int i = 0; i < Main.headers.size(); i++) {
-                    switch (Main.types.get(i)) {
+                for (int i = 0; i < Oracle.headers.size(); i++) {
+                    switch (Oracle.types.get(i)) {
                         case "NUMBER":
                         case "INTEGER":
                             executeTable.getColumnModel().getColumn(i).setPreferredWidth(60);
@@ -750,12 +750,12 @@ public class Gui extends JFrame implements ActionListener {
                 executeTable.setSelectionForeground(new Color(26, 79, 164));
                 executeTable.setSelectionBackground(new Color(255, 255, 160));
                 executeScrollPane.setViewportView(executeTable);
-                Main.isStop.set(false);
+                Oracle.isStop.set(false);
                 if (executeModel.getColumnCount() > 0) executeModel.setRowCount(0);
-                Main.isStop.set(false);
+                Oracle.isStop.set(false);
                 statusLbl.setText("");
-                if (!Main.isStop.get()) {
-                    (new Thread(Main::selectFromTable)).start();
+                if (!Oracle.isStop.get()) {
+                    (new Thread(Oracle::selectFromTable)).start();
                 }
             }
         });
@@ -781,11 +781,11 @@ public class Gui extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (Main.isConnectedToVPN && e.getSource() == scan_btn) {
+        if (Oracle.isConnectedToVPN && e.getSource() == scan_btn) {
             // анализ таблицы на уникальные значения по стобцам
             if (uniqueAnalysisModel.getColumnCount() > 0) uniqueAnalysisModel.setRowCount(0);
-            new Thread(Main::tableInfo).start();
-            new Thread(Main::selectUniqueItems).start();
+            new Thread(Oracle::tableInfo).start();
+            new Thread(Oracle::selectUniqueItems).start();
             new Thread(Gui::fill).start();
             //Main.tableInfo();
             //Main.selectUniqueItems();
@@ -800,7 +800,7 @@ public class Gui extends JFrame implements ActionListener {
     // Шкала прогресса
     static void fill(){
         int counter = 0;
-        while (!Main.isAnalyseFihished){
+        while (!Oracle.isAnalyseFihished){
             if (counter == 99) {
                 counter = 0;
             }
@@ -812,6 +812,6 @@ public class Gui extends JFrame implements ActionListener {
             }
             counter++;
         }
-        Main.isAnalyseFihished = false;
+        Oracle.isAnalyseFihished = false;
     }
 }

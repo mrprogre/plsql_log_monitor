@@ -35,15 +35,15 @@ public class Common extends Gui {
 
     // добавляем название таблиц в комбобокс после подключения к конкретной среде
     static void addItemsToCombobox() {
-        for (int i = 0; i < Main.user_tables.size(); i++) {
-            tableNamesBox.addItem(Main.user_tables.get(i));
+        for (int i = 0; i < Oracle.user_tables.size(); i++) {
+            tableNamesBox.addItem(Oracle.user_tables.get(i));
         }
     }
 
     // добавляем название избранных таблиц в комбобокс
     static void addItemsToFavCombobox(){
         int rowsCount;
-        if (isSelectFavouriteTab && Main.isConnectedToVPN) {
+        if (isSelectFavouriteTab && Oracle.isConnectedToVPN) {
             if (tableNamesBox.getItemCount() > 0) tableNamesBox.removeAllItems();
             rowsCount = Common.countLines();
             String[][] favoriteTabNames = Common.getLinesFromFile2(rowsCount);

@@ -69,17 +69,17 @@ class ButtonEditor extends DefaultCellEditor {
                     File selected = save_to.getSelectedFile();
                     String file_absolute_path = selected.getAbsolutePath();
 
-                    String v_row = Main.row_ids.get(Gui.executeTable.getSelectedRow());
-                    String v_column = Main.headers.get(Gui.executeTable.getSelectedColumn());
+                    String v_row = Oracle.row_ids.get(Gui.executeTable.getSelectedRow());
+                    String v_column = Oracle.headers.get(Gui.executeTable.getSelectedColumn());
 
                     String v_sql = "SELECT " + v_column + " FROM " + Gui.tableNamesBox.getSelectedItem()
                             + " where ROWID = '" + v_row + "'";
-                    Statement st = Main.connect.createStatement();
+                    Statement st = Oracle.connect.createStatement();
                     ResultSet rs = st.executeQuery(v_sql);
 
                     while (rs.next()) {
-                        String v_header = Main.headers.get(Gui.executeTable.getSelectedColumn());
-                        switch (Main.types.get(Gui.executeTable.getSelectedColumn())) {
+                        String v_header = Oracle.headers.get(Gui.executeTable.getSelectedColumn());
+                        switch (Oracle.types.get(Gui.executeTable.getSelectedColumn())) {
                             case "BLOB":
                                 Blob blob = rs.getBlob(v_header);
                                 Common.getBlobFromTable(file_absolute_path, blob);
