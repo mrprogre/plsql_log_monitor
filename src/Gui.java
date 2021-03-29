@@ -36,7 +36,7 @@ public class Gui extends JFrame implements ActionListener {
     static String[] themeCbx = new String[]{"Gray", "Dos", "Black", "Orange", "Green", "Brown", "Blue", "Pink"};
     static String[] orderByValues = new String[]{"fl_date", "fl_text"};
     static String[] sortingValues = new String[]{"DESC", "ASC"};
-    static String[] devProdValues = new String[]{"dev", "test", "prod"};
+    static String[] devProdValues = new String[]{"dev", "test", "prod", "akr"};
     static Font fontStyle = new Font("Tahoma", Font.BOLD, 12);
     static Color contrastColor = new Color(113, 255, 76);
     static Color fontColor = new Color(0, 0, 0);

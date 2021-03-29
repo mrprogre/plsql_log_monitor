@@ -27,6 +27,7 @@ public class Oracle {
     static boolean isAnalyseFihished;
     static String user = "";
     static String password = "";
+    static String passwordAkr = "";
 
     // открытие соединения
     static void open() {
@@ -44,11 +45,16 @@ public class Oracle {
                     connect = DriverManager.getConnection("jdbc:oracle:thin:@172.16.46.12:1521/asuab", user, password);
                     Common.notification("connected to TEST");
                     isConnectedToVPN = true;
-                } else {
+                } else if (platformValue.equals("prod")) {
                     connect = DriverManager.getConnection("jdbc:oracle:thin:@172.16.46.10:1521/asuabsys", user, password);
                     Common.notification("connected to PROD");
                     isConnectedToVPN = true;
+                } else if (platformValue.equals("akr")) {
+                    connect = DriverManager.getConnection("jdbc:oracle:thin:@10.206.9.51:1521/aisuab", user, passwordAkr);
+                    Common.notification("connected to AKR");
+                    isConnectedToVPN = true;
                 }
+
             }
             if (isConnectedToVPN){
                 getUserTables();
