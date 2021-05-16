@@ -17,8 +17,8 @@ public class Gui extends JFrame implements ActionListener {
     static JLabel JStatement = new JLabel("SELECT * FROM fs_log WHERE fl_date > sysdate - ");
     static JLabel JStatement_2 = new JLabel("AND fl_text LIKE'");
     static JLabel orderByLbl = new JLabel("'ORDER BY");
-    static JTextField likeTextField = new JTextField("%%");
-    static JTextField textWhereClause = new JTextField("5/1440");
+    static JTextField likeTextField = new JTextField("%шибк%");
+    static JTextField textWhereClause = new JTextField("1/1440");
     static JLabel sumLbl;
     static JLabel statusLbl;
     static JLabel statusLbl2;
@@ -602,17 +602,17 @@ public class Gui extends JFrame implements ActionListener {
         uniqueAnalysisScrollPane.setBounds(15, 404, 324, 142);
         getContentPane().add(uniqueAnalysisScrollPane);
 
-        Object[] uniqueColumns = {"Column", "Type", "Unique items"};
+        Object[] uniqueColumns = {"Column", "Type", "Unique", "Selectivity"};
         uniqueAnalysisModel = new DefaultTableModel(new Object[][]{
         }, uniqueColumns) {
             final boolean[] uniqueColumnEditables = new boolean[]{
-                    false, false, false
+                    false, false, false, false
             };
             public boolean isCellEditable(int row, int column) {
                 return uniqueColumnEditables[column];
             }
             // Сортировка
-            final Class[] types_unique = {String.class, String.class, Integer.class};
+            final Class[] types_unique = {String.class, String.class, Integer.class, Double.class};
             @Override
             public Class getColumnClass(int columnIndex) {
                 return this.types_unique[columnIndex];
@@ -635,7 +635,8 @@ public class Gui extends JFrame implements ActionListener {
         uniqueAnalysisTable.setFont(new Font("SansSerif", Font.PLAIN, 13));
         uniqueAnalysisTable.getColumnModel().getColumn(0).setPreferredWidth(50);
         uniqueAnalysisTable.getColumnModel().getColumn(1).setPreferredWidth(30);
-        uniqueAnalysisTable.getColumnModel().getColumn(2).setPreferredWidth(20);
+        uniqueAnalysisTable.getColumnModel().getColumn(2).setPreferredWidth(15);
+        uniqueAnalysisTable.getColumnModel().getColumn(3).setPreferredWidth(30);
         // Colors
         uniqueAnalysisTable.setForeground(Color.black);
         uniqueAnalysisTable.setSelectionForeground(new Color(26, 79, 164));

@@ -187,6 +187,7 @@ public class Oracle {
 
     // Анализ данных на уникальность
     static synchronized void selectUniqueItems() {
+        double selectivity = 0.0;
         try {
             List<String> columns = new ArrayList<>();
             if (types.size() > 0) types.clear();
@@ -205,17 +206,22 @@ public class Oracle {
             data_type_count = 0;
             for (String s : columns) {
                 if (types.get(data_type_count).equals("BLOB")||types.get(data_type_count).equals("CLOB")) s = null;
-                PreparedStatement st_count = connect.prepareStatement("select count(distinct " + s + ") from " + Gui.tableNamesBox.getSelectedItem());
+                PreparedStatement st_count = connect.prepareStatement("select count(distinct "+s+"), count("+s+") from " + Gui.tableNamesBox.getSelectedItem());
                 if (s == null) s = headers.get(data_type_count);
                 ResultSet rs_count = st_count.executeQuery();
 
                 while (rs_count.next()) {
-                    int rows_count = rs_count.getInt(1);
+                    double distinct_rows_count = rs_count.getDouble(1);
+                    double all_rows_count = rs_count.getDouble(2);
+
+                    selectivity = distinct_rows_count/all_rows_count;
+                    if (distinct_rows_count ==0.0 && all_rows_count== 0.0) selectivity = 0.0;
 
                     Object[] row = new Object[]{
                             s,
                             types.get(data_type_count),
-                            rows_count
+                            (int)distinct_rows_count,
+                            selectivity
                     };
                     Gui.uniqueAnalysisModel.addRow(row);
                     data_type_count++;
