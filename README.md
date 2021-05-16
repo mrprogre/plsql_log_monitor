@@ -15,6 +15,7 @@ In the process of work, I added a lot of new functionality:
 10) created 8 interface themes, including DOS theme and contrast. Also, any background color of the application can be selected by the button with the palette
 11) in the lower right table, the specified table is selected in the combo box, if you press the yellow "Select" button. A hint has been created that suggests that the first 18 records are displayed. To display all records, you need to set the caret in the field where the hint is, so that it disappears and press the yellow "Select" or the Enter key
 12) In the table in clause 11, it is possible to download blob, clob files, moreover, a logic has been created that determines the main types of files so that the user himself does not guess it after saving (some types are shown in the table in the screenshot). If blob, clob is empty, then there is a "-" sign.
+13) there is a calculation of selectivity
 
 p.s. I can not write the GIF file of the application operation, tk. the names of tables and procedures in the log are confidential
 
