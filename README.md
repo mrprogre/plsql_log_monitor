@@ -19,4 +19,4 @@ In the process of work, I added a lot of new functionality:
 
 p.s. I can not write the GIF file of the application operation, tk. the names of tables and procedures in the log are confidential
 
-![Image alt](https://github.com/mrprogre/plsql_log_monitor/blob/master/Gui.png) 
+![Image alt](https://github.com/mrprogre/plsql_log_monitor/blob/master/GUI.png) 
